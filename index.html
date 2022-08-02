@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="bootstrap stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <title>City Weather</title>
+</head>
+
+<body>
+    <header>
+        <h1>weather dashboard</h1>
+    </header>
+    <section id="searchForm">
+        <h1>search by city:</h1>
+        <form id="search">
+            <label for="city">City</label>
+            <input name="city" id="city" type="text" autofocus="true"/>
+            <button type="submit" id="submitButton">Get Weather</button>
+        </form>
+        <div class="flex-column" id="prevSearches">
+            <!-- populated with javascript and local storage-->
+        </div>
+    </section>
+    <section id>
+        <br>
+        <div class="card" id="currentCity">
+            <!-- populated with javascript -->
+        </div>
+        <div class="flex-row" id="fiveDayForcast">
+            <!-- populated with javascript -->
+        </div>
+    </section>    
+    <script rel="bootstrap js" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script rel="javascript" src="assets/js/script.js"></script>
+</body>
+</html>
