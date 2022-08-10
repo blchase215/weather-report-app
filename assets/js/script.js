@@ -1,78 +1,46 @@
- var apiKey = "3641a3ebb47542661e5d31bae15f30e1";
- var citySearchEl = document.getElementById('search');
- var searchBarEl = document.getElementById('city');
- var searchButton = document.getElementById('submitButton');
- var prevSearches = document.getElementById('prevSearches');
- var currentCity = document.getElementById('currentCity');
- var fiveDay = document.getElementById('fiveDayForcast')
+var apiKey = "3641a3ebb47542661e5d31bae15f30e1";
+var searchForm = document.getElementById('search');
+var searchInput = document.getElementById('searchInput');
+var searchButton = document.getElementById('submitButton');
+var prevSearches = document.getElementById('prevSearches');
+var currentCity = document.getElementById('currentCity');
+var fiveDay = document.getElementById('fiveDayForcast')
 
-//  var weather = {
-//       var city = {
-//       name: "", 
-//       currentDate: ,
-//       weather {
-//             icon, 
-//             temp, 
-//             humidity, 
-//             wind speed, 
-//             uv index {
-//                color indicator: favorable, 
-//                                  modearate,
-//                                  severe
-//       }, 
-//       5-day {
-//          date, 
-//          icon, 
-//          temp, 
-//          wind speed, 
-//          humidity
-//       }
-//    }
+function cityStringMaker(event) {
+  event.preventDefault();
+  var searchURL = 'https://api.openweathermap.org/data/2.5/weather?q='
+                  + searchInput
+                  + '&appid=' + apiKey;
+  if (event) {
+    fetch(searchURL).then(function (response) {
+      if(response.ok) {
+        response.json().then(function (data) {
+          displayWeather(data)
+        })
+      } else {
+        alert('Error: '+ response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert('Unable to connect to Weather Service');
+    });
+  };
+};
 
-console.log('https://api.openweathermap.org/data/2.5/weather?q=philadelphia&appid=' + apiKey);
+function displayWeather(city) {
+  var cityEl = document.createElement('a');
+  cityEl.classList = 'list-item flex-row justify-space-between align-center';
+  cityEl.setAttribute('href', city.html_url);
+  cityEl.setAttribute('target', '_blank');
+
+  var cityInfo = document.createElement('span');
+  cityInfo.textContent = city.name;
+  prevSearches.appendChild(cityInfo);
+
+  var typeEl = document.createElement('span');
+};
+
+searchButton.addEventListener('submit', cityStringMaker)
+
 var philly = 'https://api.openweathermap.org/data/2.5/weather?q=philadelphia&appid=' + apiKey + '&units=imperial';
 
-function getApi() {
-   var requestUrl = philly;
- 
-   fetch(requestUrl)
-     .then(function (response) {
-       return response.json();
-     })
-     .then(function (data) {
-       console.log(data);
-      //  for (var i = 0; i < data.length; i++) {
-      //    var userName = document.createElement('h3');
-      //    var issueTitle = document.createElement('p');
-      //    userName.textContent = data[i].user.login;
-      //    issueTitle.textContent = data[i].title;
-      //    issueContainer.append(userName);
-      //    issueContainer.append(issueTitle);
-      //  }
-     });
- }
-//  submitButton.addEventListener('click', getApi);
- getApi();
-
-// function getApi() {
-//    var cityName = 
-//    var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey;
- 
-//    fetch(requestUrl)
-//      .then(function (response) {
-//        return response.json();
-//      })
-//      .then(function (data) {
-//        console.log(data);
-//        for (var i = 0; i < data.length; i++) {
-//          var userName = document.createElement('h3');
-//          var issueTitle = document.createElement('p');
-//          userName.textContent = data[i].user.login;
-//          issueTitle.textContent = data[i].title;
-//          issueContainer.append(userName);
-//          issueContainer.append(issueTitle);
-//        }
-//      });
-//  }
-//  fetchButton.addEventListener('click', getApi);
- 
